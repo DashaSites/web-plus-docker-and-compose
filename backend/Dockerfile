@@ -5,7 +5,7 @@ FROM node:18-alpine AS builder
 # Это "что-то" должно находиться в контексте моего Dockerfile.
 WORKDIR /app
 # Инструкция ниже создает слой в образе, кот-й будет содержать файловую систему моего проекта.
-COPY package*.json ./
+COPY package*.json ./ 
 # Ниже происходит запуск какой-то программы внутри контейнера. Например, установить зависимости или пакеты.
 # То есть в результате RUN формируется файловая структура образа. 
 RUN npm ci --no-audit --no-fund
@@ -14,6 +14,7 @@ COPY . ./
 # Команда: что надо будет сделать, чтобы вся эта файловая структура заиграла
 RUN npm run build
 
+
 # Следующий stage:
 FROM node:18-alpine AS runner
 
@@ -21,7 +22,8 @@ WORKDIR /app
 
 COPY package*.json ./ 
 
-RUN npm ci --omit=dev --no-audit --no-fund && npm i -g pm2
+RUN npm ci --omit=dev --no-audit --no-fund \
+  && npm i -g pm2
 
 COPY --from=builder /app/dist ./dist
 
@@ -30,7 +32,7 @@ COPY ./ecosystem.config.js ./
 ENTRYPOINT [ "pm2-runtime", "start", "ecosystem.config.js" ]
 
 ## Когда я описала образ, для его создания надо в терминале, находясь в папке backend,
-## запустить команду 'docker build -t image-name'
+## запустить команду 'docker build . -t image-name'
 
 ### Дальше можно попробовать запустить контейнер (находясь в той же папке в терминале):
 ### docker run image-name

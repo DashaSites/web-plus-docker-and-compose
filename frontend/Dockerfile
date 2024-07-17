@@ -17,6 +17,6 @@ WORKDIR /app
 
 COPY --from=builder /app/build /usr/share/nginx/html
 
-COPY ./nginx/default.conf /etc/nginx/conf.d
+# COPY ./nginx/default.conf /etc/nginx/conf.d
 
 ENTRYPOINT [ "nginx", "-g", "daemon off;" ]
