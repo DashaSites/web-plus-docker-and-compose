@@ -6,96 +6,48 @@ services:
     build:
       context: backend
       dockerfile: Dockerfile
-    image: kupipodariday-backend
+    image: kupipodariday-backend-opti
     ports:
       - 4000:4000
     env_file:
       - .env
+    networks:
+      - backend
 
   frontend:
     container_name: kupipodariday-frontend
     build:
       context: frontend
       dockerfile: Dockerfile
-    image: kupipodariday-frontend
+    image: kupipodariday-frontend-opti
     ports: # Внутри контейнера процесс будет работать на 80-м порту (из-за nginx)
-      - 5005:3000
+      - 5005:80
+    networks:
+      - frontend
 
   postgres:
     restart: always
     container_name: postgres
     image: postgres
+    volumes:
+      - postgres_data:/data/postgres
     env_file:
       - .env
+    networks:
+      - backend
 
   adminer:
     container_name: adminer
     image: adminer
     restart: always
     ports:
-      - 8081:8080 
+      - 8081:8080
+    networks:
+      - backend
 
+volumes:
+  postgres_data:
 
-
-
-
-
-# НИЖЕ - ИТОГ
-
-# version: '3.9'
-# # Сервис - это какой-то запущенный процесс
-# services:
-#   backend:
-#     restart: always
-#     container_name: kupipodariday-backend
-#     build:
-#       context: backend
-#       dockerfile: Dockerfile
-#     image: kupipodariday-backend-opti
-#     ports:
-#       - 4000:3000
-#     env_file:
-#       - .env
-#     depends_on:
-#       - postgres
-#     networks:
-#       - backend
-
-
-  # frontend:
-  #   container_name: kupipodariday-frontend
-  #   build:
-  #     context: frontend
-  #     dockerfile: Dockerfile
-  #   image: kupipodariday-frontend-opti
-  #   ports: # Внутри контейнера процесс будет работать на 80-м порту (из-за nginx)
-  #     - 5000:80
-  #   networks:
-  #     - frontend
-
-  # postgres:
-  #   restart: always
-  #   container_name: postgres
-  #   image: postgres
-  #   volumes:
-  #     - postgres_data:/var/lib/postgresql/data 
-  #   env_file:
-  #     - .env
-  #   networks:
-  #     - backend
-
-  # adminer:
-  #   container_name: adminer
-  #   image: adminer
-  #   restart: always
-  #   ports:
-  #     - 8081:8080 
-  #   networks:
-  #     - backend 
-
-  # volumes:
-  #   postgres_data 
-
-  # networks:
-  #   frontend:
-  #   backend: 
+networks:
+  frontend:
+  backend: 
