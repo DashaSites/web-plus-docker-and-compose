@@ -6,6 +6,12 @@ async function bootstrap() {
   const PORT = process.env.PORT || 4000;
   const app = await NestFactory.create(AppModule, { cors: true });
 
+  app.enableCors({
+    origin: true,
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
+    credentials: true,
+});
+
   // Подключаю валидацию dto-шек (их валидация происходит до запуска контроллера)
   app.useGlobalPipes(new ValidationPipe({ transform: true, whitelist: true }));
 
