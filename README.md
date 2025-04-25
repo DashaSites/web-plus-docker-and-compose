@@ -1,14 +1,26 @@
-# Проект: Докеризация и деплой приложения "КупиПодариДай"
+### Dockerized deployment for a wishlist platform
 
-1. Создан облачный сервер, установлено и настроено необходимое ПО: Git, Node.js, NVM, Nginx, Docker, Docker Compose
-2. Описан сценарий деплоя бэкенда в файле ecosystem.config.js
-3. Созданы домены для фронтенда и бэкенда; они привязаны к серверу
-4. В файлах Dockerfile описаны сценарии для двухэтапной сборки фронтенда и бэкенда
-5. Выпущены и подключены сертификаты SSL
-6. В файле docker-compose.yml собрано описание всех элементов приложения: бэкенда, фронтенда и базы данных
+This training project focused on containerizing and deploying a full-stack app with Docker and docker-compose.
 
-# IP адрес 89.169.164.101
+As part of the task, I:
+- Dockerized the Node.js backend and React frontend with multi-stage builds
+- Configured PostgreSQL as a containerized database
+- Set up environment variables and .env.example files
+- Wrote a docker-compose.yml to orchestrate backend, frontend, and DB // describe ?
+- Set up Nginx and HTTPS with Let's Encrypt
+- Deployed the stack on a remote Ubuntu server
+  
+The live deployment is no longer available — domain and hosting were temporary.
 
-# Frontend https://wishlistservice.nomorepartiesco.ru/
+#### Technologies:
+- Backend: Node.js, Nest.js
+- Database: PostgreSQL
+- Containerization: Docker, Docker Compose
+- Web Server: Nginx
+- SSL Certification: Let's Encrypt
+- Deployment Environment: Ubuntu Server
 
-# Backend https://api.wishlistservice.nomorepartiesco.ru/
+//
+IP - 89.169.164.101 //
+Frontend - https://wishlistservice.nomorepartiesco.ru/ //
+Backend - https://api.wishlistservice.nomorepartiesco.ru/
