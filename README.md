@@ -20,7 +20,9 @@ The live deployment is no longer available — domain and hosting were temporary
 - SSL Certification: Let's Encrypt
 - Deployment Environment: Ubuntu Server
 
-//
-IP - 89.169.164.101 //
-Frontend - https://wishlistservice.nomorepartiesco.ru/ //
-Backend - https://api.wishlistservice.nomorepartiesco.ru/
+
+IP Address: 89.169.164.101
+<br>
+Frontend: [wishlistservice.nomorepartiesco.ru](https://wishlistservice.nomorepartiesco.ru/)
+<br>
+Backend: [api.wishlistservice.nomorepartiesco.ru](https://api.wishlistservice.nomorepartiesco.ru/)
